@@ -2,7 +2,8 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <h1>🏝️ Far Away 🧳</h1>
+
   )
 }
 
