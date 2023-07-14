@@ -4,8 +4,14 @@ const Form = () => {
     const [quantity, setQuantity] = useState(1);
     const [description, setDescription] = useState("");
 
-    const handleSubmit=()=>{
+    const handleSubmit = (e) => {
+
         e.preventDefault();  
+        const newItem = { description, quantity, packed: false, id: Date.now() };
+        console.log(newItem)
+        
+    setDescription("");
+    setQuantity(1);
     }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
@@ -25,6 +31,7 @@ const Form = () => {
         placeholder="Item..."
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        required
       />
       <button>Add</button>
     </form>
