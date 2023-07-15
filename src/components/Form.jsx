@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Form = () => {
+const Form = ({handleAddItems}) => {
     const [quantity, setQuantity] = useState(1);
     const [description, setDescription] = useState("");
 
@@ -9,9 +9,9 @@ const Form = () => {
         e.preventDefault();  
         const newItem = { description, quantity, packed: false, id: Date.now() };
         console.log(newItem)
-        
-    setDescription("");
-    setQuantity(1);
+        handleAddItems(newItem)
+        setDescription("");
+        setQuantity(1);
     }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
