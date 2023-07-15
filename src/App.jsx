@@ -9,14 +9,38 @@ import Stats from './components/Stats'
 function App() {
   const [items, setItems] = useState([]);
 
-  function handleAddItems(item) {
+  const handleAddItems=(item) =>{
     setItems((items) => [...items, item]);
+  }
+
+  const handleDeleteItem=(id)=>{
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+  const handleToggleItem=(id)=>{
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
+
+  const handleClearList=()=>{
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all items?"
+    );
+
+    if (confirmed) setItems([]);
   }
   return (
     <div className='app'>
      <Logo />
      <Form handleAddItems={handleAddItems}/>
-     <PackingList items={items}/>
+     <PackingList 
+     items={items} 
+     handleClearList={handleClearList}
+     handleDeleteItem={handleDeleteItem}
+     handleToggleItem={handleToggleItem} 
+     />
      <Stats />
     </div>
   )

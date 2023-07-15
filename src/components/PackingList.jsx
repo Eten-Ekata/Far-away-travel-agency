@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import Item from "./Item";
 const PackingList = ({ 
   items,
-  onDeleteItem,
-  onToggleItem,
-  onClearList,}) => {
+  handleDeleteItem,
+  handleToggleItem,
+  handleClearList,}) => {
     const [sortBy, setSortBy] = useState("input");
     let sortedItems;
     
@@ -26,8 +26,8 @@ const PackingList = ({
         {sortedItems.map((item) => (
           <Item
             item={item}
-            onDeleteItem={onDeleteItem}
-            onToggleItem={onToggleItem}
+            handleDeleteItem={handleDeleteItem}
+            handleToggleItem={handleToggleItem}
             key={item.id}
           />
         ))}
@@ -39,7 +39,7 @@ const PackingList = ({
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
-        <button onClick={onClearList}>Clear list</button>
+        <button onClick={handleClearList}>Clear list</button>
       </div>
     </div>
   )
