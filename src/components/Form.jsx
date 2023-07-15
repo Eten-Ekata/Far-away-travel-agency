@@ -1,9 +1,15 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import JonasContext from '../context/FarContext'
 
-const Form = ({handleAddItems}) => {
+const Form = () => {
+  const{ items, setItems} = useContext(JonasContext)
     const [quantity, setQuantity] = useState(1);
     const [description, setDescription] = useState("");
 
+    const handleAddItems=(item) =>{
+      setItems((items) => [...items, item]);
+    }
+  
     const handleSubmit = (e) => {
         e.preventDefault();  
         const newItem = { description, quantity, packed: false, id: Date.now() };

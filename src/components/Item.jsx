@@ -1,6 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import JonasContext from '../context/FarContext'
 
-const Item = ({ item, handleDeleteItem, handleToggleItem }) => {
+const Item = ({item}) => {
+  const{ items, setItems} = useContext(JonasContext)
+
+  const handleDeleteItem=(id)=>{
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+  
+  const handleToggleItem=(id)=>{
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
   return (
     <li>
     <input

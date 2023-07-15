@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import JonasContext from '../context/FarContext'
 
-const Stats = ({items}) => {
+const Stats = () => {
+  const{ items, setItems} = useContext(JonasContext)
+
   if (!items.length)
   return (
     <p className="stats">

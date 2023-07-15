@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Item from "./Item";
-const PackingList = ({ 
-  items,
-  handleDeleteItem,
-  handleToggleItem,
-  handleClearList,}) => {
+import JonasContext from '../context/FarContext'
+
+const PackingList = () => {
+  const{ items, setItems} = useContext(JonasContext)
+
     const [sortBy, setSortBy] = useState("input");
     let sortedItems;
     
@@ -20,14 +20,20 @@ const PackingList = ({
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
 
+      const handleClearList=()=>{
+        const confirmed = window.confirm(
+          "Are you sure you want to delete all items?"
+        );
+    
+        if (confirmed) setItems([]);
+      }
+      
   return (
     <div className="list">
       <ul>
         {sortedItems.map((item) => (
           <Item
             item={item}
-            handleDeleteItem={handleDeleteItem}
-            handleToggleItem={handleToggleItem}
             key={item.id}
           />
         ))}
